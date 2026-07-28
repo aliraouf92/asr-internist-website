@@ -1,11 +1,439 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>عيادة د. علي سمير رؤوف</title>
+    <meta name="description" content="عيادة د. علي سمير رؤوف، اختصاصي الطب الباطني والقلبية والسكري." />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        :root {
+            --color-primary: #1e40af; /* Deep Medical Blue */
+            --color-primary-dark: #1e3a8a;
+            --color-primary-light: #3b82f6;
+            --color-primary-soft: #eff6ff;
+            --color-accent: #f3f4f6; /* Light Gray */
+            --color-bg-alt: #f8fafc;
+        }
+
+        /* Nav adjustment for spacing */
+        .nav {
+            gap: 1.25rem;
+        }
+
+        /* Hero image fix */
+        .hero-image-wrapper {
+            background-color: var(--color-white);
+            padding: 1rem;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .hero-image {
+            width: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+
+        /* Activities Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            aspect-ratio: 4/3;
+            background-color: var(--color-accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 1.2rem;
+            overflow: hidden;
+            border: 2px dashed var(--color-text-light);
+            transition: var(--transition);
+        }
+        .gallery-item:hover {
+            border-color: var(--color-primary-light);
+            background-color: var(--color-primary-soft);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Social Media Cards */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .social-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .social-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+            border-color: var(--color-primary-light);
+        }
+        .social-placeholder {
+            aspect-ratio: 16/9;
+            background-color: var(--color-accent);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary-light);
+            transition: var(--transition);
+        }
+        .social-placeholder i {
+            font-size: 3.5rem;
+            opacity: 0.8;
+        }
+        
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .contact-card {
+            background: var(--color-white);
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+            border-color: var(--color-primary-light);
+        }
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-primary-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .contact-card p {
+            color: var(--color-text-muted);
+            margin-top: 0.5rem;
+        }
+        
+        /* Map Styles */
+        .map-container {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            background: var(--color-white);
+            padding: 0.5rem;
+        }
+        .map-wrapper {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 21/9;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .map-wrapper {
+                aspect-ratio: 16/9;
+            }
+        }
+    </style>
 </head>
 <body>
-  Hello, World!
+    <!-- HEADER -->
+    <header class="header">
+        <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-checkbox">
+        <div class="container header-inner">
+            <div class="logo">
+                <i class="fas fa-heartbeat" style="font-size: 32px; color: var(--color-primary);"></i>
+                <h2 class="logo-text" style="font-weight: 800; font-size: 1.4rem;">عيادة د. علي سمير رؤوف</h2>
+            </div>
+            <div class="nav-container">
+                <nav class="nav">
+                    <a href="#activities" class="nav-link">نشاطنا</a>
+                    <a href="#social" class="nav-link">التواصل الاجتماعي</a>
+                    <a href="#location" class="nav-link">موقعنا</a>
+                    <a href="#contact" class="nav-link">تواصل معنا</a>
+                    <a href="#contact" class="btn btn-primary" style="margin-right: 0.5rem; padding: 0.5rem 1.5rem; font-size: 1rem;">احجز الآن</a>
+                </nav>
+            </div>
+            <label for="mobile-menu-toggle" class="mobile-menu-btn">
+                <i class="fas fa-bars hamburger-icon"></i>
+                <i class="fas fa-xmark close-icon"></i>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 1 – Hero Section -->
+        <section id="hero" class="hero section-padding">
+            <div class="hero-bg-decoration"></div>
+            <div class="container hero-grid">
+                <!-- Content Side -->
+                <div class="hero-content">
+                    <h1 class="hero-title" style="color: var(--color-primary-dark); margin-bottom: 0.5rem;">صحتك بأيدٍ آمنة</h1>
+                    <p class="hero-description" style="color: var(--color-text-main); line-height: 1.8; font-size: 1.15rem; max-width: 550px;">
+                        مرحباً بكم في عيادة د. علي سمير رؤوف، حيث نلتزم بتقديم رعاية طبية متخصصة قائمة على أحدث المعايير العلمية في تشخيص وعلاج أمراض الباطنية والقلبية والسكري. نسعد باستقبالكم والإجابة عن استفساراتكم ومرافقتكم في رحلة الوصول إلى صحة أفضل. نتشرف بزيارتكم ونسعى دائماً لتقديم رعاية طبية متميزة بكل احترافية واهتمام.
+                    </p>
+                    <div class="hero-actions" style="margin-top: 1rem;">
+                        <a href="#contact" class="btn btn-primary btn-hero" style="font-size: 1.1rem; padding: 0.75rem 2rem;">حجز موعد</a>
+                        <a href="#location" class="btn btn-outline btn-hero" style="font-size: 1.1rem; padding: 0.75rem 2rem;">موقع العيادة</a>
+                    </div>
+                </div>
+
+                <!-- Image Side -->
+                <div class="hero-image-container">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/images/portrait.png" alt="د. علي سمير رؤوف" class="hero-image" style="aspect-ratio: 3/4;">
+                        <div class="hero-badge-floating">
+                            <h3>د. علي سمير رؤوف</h3>
+                            <p>اختصاصي الطب الباطني والقلبية والسكري</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 – نشاطات الدكتور -->
+        <section id="activities" class="section-padding">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-tag">معارض وفعاليات</span>
+                    <h2 class="section-title">نشاطات الدكتور</h2>
+                    <p class="section-desc">
+                        يشارك الدكتور بفعالية في المؤتمرات العلمية، المحاضرات، ورش العمل، والفعاليات الطبية داخل العراق وخارجه.
+                    </p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item" title="مساحة مخصصة لإضافة صورة مؤتمر علمي لاحقاً">
+                        <span><i class="fas fa-camera"></i> صورة من مؤتمر علمي</span>
+                    </div>
+                    <div class="gallery-item" title="مساحة مخصصة لإضافة صورة ورشة عمل لاحقاً">
+                        <span><i class="fas fa-camera"></i> صورة من ورشة عمل</span>
+                    </div>
+                    <div class="gallery-item" title="مساحة مخصصة لإضافة صورة ندوة طبية لاحقاً">
+                        <span><i class="fas fa-camera"></i> صورة من ندوة طبية</span>
+                    </div>
+                    <div class="gallery-item" title="مساحة مخصصة لإضافة صورة نشاط طبي لاحقاً">
+                        <span><i class="fas fa-camera"></i> صورة نشاط طبي</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 – مواقع التواصل الاجتماعي -->
+        <section id="social" class="section-padding bg-alt">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-tag">شاركنا الرحلة</span>
+                    <h2 class="section-title">تابعنا على مواقع التواصل الاجتماعي</h2>
+                    <p class="section-desc">محتوى طبي موثوق، فيديوهات توعوية، ونصائح صحية مستمرة.</p>
+                </div>
+
+                <div class="social-grid">
+                    <div class="social-card">
+                        <div class="social-placeholder">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--color-primary-dark);">منشور إنستغرام توعوي</h3>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">نصائح هامة للوقاية من أمراض القلب وضغط الدم.</p>
+                        <a href="https://www.instagram.com/dr_ali_raouf" target="_blank" class="btn btn-primary" style="width: 100%;"><i class="fab fa-instagram"></i> مشاهدة المنشور</a>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-placeholder">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--color-primary-dark);">فيديو طبي على فيسبوك</h3>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">أهمية الفحص الدوري والتشخيص المبكر للسكري.</p>
+                        <a href="https://www.facebook.com/share/1MH8wbxRie/?mibextid=wwXIfr" target="_blank" class="btn btn-primary" style="width: 100%;"><i class="fab fa-facebook"></i> مشاهدة الفيديو</a>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="social-placeholder">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--color-primary-dark);">نصيحة طبية</h3>
+                        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">معلومات شاملة حول صحة الجهاز الهضمي والأمعاء.</p>
+                        <a href="https://www.instagram.com/dr_ali_raouf" target="_blank" class="btn btn-primary" style="width: 100%;"><i class="fab fa-instagram"></i> مشاهدة المنشور</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 – موقع العيادة -->
+        <section id="location" class="section-padding">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-tag">أين تجدنا</span>
+                    <h2 class="section-title">موقع العيادة</h2>
+                    <p class="section-desc" style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--color-text-main);">نسعد باستقبالكم وتوفير أفضل رعاية طبية لكم.</p>
+                    <div style="background-color: var(--color-primary-soft); display: inline-block; padding: 1rem 2rem; border-radius: var(--radius-full); margin-top: 0.5rem;">
+                        <p style="font-size: 1.15rem; font-weight: 700; color: var(--color-primary-dark); margin: 0;">
+                            <i class="fas fa-map-marker-alt" style="margin-left: 0.5rem;"></i>
+                            العنوان: بغداد – حي الجامعة – شارع 66 – مجمع تاج الماس الطبي
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="map-container" style="max-width: 1100px; margin: 0 auto;">
+                    <div class="map-wrapper">
+                        <!-- Embedded Google Maps - placeholder map centering near Al-Jamaa, Baghdad -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.212345!2d44.316000!3d33.318000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDE5JzA0LjgiTiA0NMKwMTgnNTcuNiJF!5e0!3m2!1sar!2siq!4v1700000000000!5m2!1sar!2siq" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div style="padding: 1.5rem; text-align: center; background-color: var(--color-bg-alt);">
+                        <a href="https://maps.google.com/?q=33.318,44.316" target="_blank" class="btn btn-primary btn-hero">
+                            <i class="fas fa-location-arrow"></i> افتح الموقع في خرائط Google
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 – تواصل معنا -->
+        <section id="contact" class="section-padding bg-alt">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-tag">نحن في خدمتك</span>
+                    <h2 class="section-title">تواصل معنا</h2>
+                    <p class="section-desc">نحن هنا للإجابة على استفساراتكم وحجز مواعيدكم بكل سهولة.</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <a href="tel:+964" class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <h3>اتصال هاتفي</h3>
+                        <p>اضغط هنا للاتصال وحجز موعدك</p>
+                    </a>
+                    
+                    <a href="https://wa.me/964" target="_blank" class="contact-card">
+                        <div class="contact-icon" style="background-color: #dcf8c6; color: #25D366;"><i class="fab fa-whatsapp"></i></div>
+                        <h3>رسالة واتساب</h3>
+                        <p>تواصل معنا عبر واتساب للاستفسار</p>
+                    </a>
+                    
+                    <div class="contact-card" style="cursor: pointer;" onclick="alert('منظومة الحجز الإلكتروني قيد التطوير. يرجى الاتصال بنا هاتفياً أو عبر واتساب.')">
+                        <div class="contact-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h3>احجز موعد</h3>
+                        <p>احجز موعدك في العيادة مباشرة</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 4rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; color: var(--color-primary-dark);">تابعنا وتواصل معنا عبر:</h3>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <a href="https://www.instagram.com/dr_ali_raouf" target="_blank" class="btn btn-primary" style="border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; padding: 0;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1MH8wbxRie/?mibextid=wwXIfr" target="_blank" class="btn btn-primary" style="border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; padding: 0;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" style="background-color: var(--color-primary-dark); color: white; padding: 5rem 0 2rem 0; margin-top: 0;">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3rem; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 3rem; margin-bottom: 2rem;">
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-heartbeat" style="font-size: 28px; color: var(--color-primary-light);"></i>
+                        <h2 style="color: white; font-size: 1.5rem; margin: 0;">عيادة د. علي سمير رؤوف</h2>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 500;">
+                        د. علي سمير رؤوف
+                    </p>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 2rem;">
+                        اختصاصي الطب الباطني والقلبية والسكري
+                    </p>
+                </div>
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 700; display: inline-block; border-bottom: 2px solid var(--color-primary-light); padding-bottom: 0.5rem;">المؤهلات العلمية</h3>
+                    <ul style="color: rgba(255,255,255,0.85); line-height: 2.2; font-size: 1rem;">
+                        <li style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--color-primary-light);"></i>
+                            <span>حاصل على البورد العربي في الطب الباطني.</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--color-primary-light);"></i>
+                            <span>عضو الكلية الملكية البريطانية للأطباء (MRCP UK).</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--color-primary-light);"></i>
+                            <span>عضو الجمعية المصرية للإيكو وتشوهات القلب (EMSE).</span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i class="fas fa-check-circle" style="color: var(--color-primary-light);"></i>
+                            <span>عضو الجمعية الأمريكية لتخطيط صدى القلب (ASE).</span>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
+                <p>جميع الحقوق محفوظة © عيادة د. علي سمير رؤوف 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Close mobile menu when clicking on nav links
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const menuCheckbox = document.getElementById('mobile-menu-toggle');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    menuCheckbox.checked = false;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
